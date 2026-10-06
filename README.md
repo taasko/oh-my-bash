@@ -316,6 +316,28 @@ If you want to uninstall `oh-my-bash`, just run `uninstall_oh_my_bash` from the 
 Check out [`CONTRIBUTING.md`](CONTRIBUTING.md) and also [Code of
 Conduct](CODE_OF_CONDUCT.md).
 
+### Developing in a Docker Compose shell
+
+Start the development container and leave it running:
+
+```shell
+docker compose up --build
+```
+
+The container mounts the repository read-write at `/workspace`. Open an
+interactive Bash session with Oh My Bash sourced from the checkout:
+
+```shell
+docker compose exec dev bash --noprofile --rcfile /workspace/.docker/dev.bashrc -i
+```
+
+Edit files on the host; their changes are immediately available in the
+container. The startup file loads the `font` theme and discovers all built-in
+alias, plugin, and completion modules from the checkout. Run
+`omb_reload_modules` after editing any of those modules. Restart Bash to clear
+definitions or state left by modules that were removed or changed. Press Ctrl-C
+in the terminal running `up`, or run `docker compose down` when you are done.
+
 This project is initially ported from Oh My Zsh and Bash-it by `@nntoan` and
 has been developed in a community-driven way.  Most of the contributors are far
 from being [Bash](https://www.gnu.org/software/bash/) experts, and there are

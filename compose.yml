@@ -1,0 +1,11 @@
+services:
+  dev:
+    build:
+      context: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command:
+      - tail
+      - -f
+      - /dev/null
